@@ -43,11 +43,11 @@ const Home: NextPage = () => {
             )
             .map((nft) => (
               <div key={nft.metadata.id.toString()} className={styles.card}>
-                <h1>{nft.metadata.name}</h1>
                 <ThirdwebNftMedia
                   metadata={nft.metadata}
                   className={styles.image}
                 />
+                <h1>{nft.metadata.name}</h1>
                 <p>
                   owned by{" "}
                   {address && nft.owner === address
