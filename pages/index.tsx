@@ -1,53 +1,63 @@
-import { ConnectWallet } from "@thirdweb-dev/react";
+import {
+  ThirdwebNftMedia,
+  useAddress,
+  useContract,
+  useMetamask,
+  useNFTs,
+} from "@thirdweb-dev/react";
 import type { NextPage } from "next";
-import styles from "../styles/Home.module.css";
+import styles from "styles/Home.module.css";
 
 const Home: NextPage = () => {
+  const address = useAddress();
+  const connectWithMetamask = useMetamask();
+  const { contract } = useContract("0x24AA930895314Abe5E5BA8b2B83Ec1dd0BE0813c", "signature-drop");
+
+  const { data: nfts, isLoading: loading } = useNFTs(contract, {
+    start: 0,
+    count: 99,
+  });
+
+  const truncateAddress = (address: string) => {
+    return (
+      address.substring(0, 6) + "..." + address.substring(address.length - 4)
+    );
+  };
+
+  if (loading) {
+    return <div className={styles.container}>Loading...</div>;
+  }
+
   return (
     <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://thirdweb.com/">thirdweb</a>!
-        </h1>
+      {!address && (
+        <button onClick={connectWithMetamask}>Connect Wallet</button>
+      )}
 
-        <p className={styles.description}>
-          Get started by configuring your desired network in{" "}
-          <code className={styles.code}>pages/_app.tsx</code>, then modify the{" "}
-          <code className={styles.code}>pages/index.tsx</code> file!
-        </p>
-
-        <div className={styles.connect}>
-          <ConnectWallet />
+      {nfts && nfts?.length > 0 && (
+        <div className={styles.cards}>
+          {nfts
+            .filter(
+              (nft) =>
+                nft.owner !== "0x0000000000000000000000000000000000000000"
+            )
+            .map((nft) => (
+              <div key={nft.metadata.id.toString()} className={styles.card}>
+                <h1>{nft.metadata.name}</h1>
+                <ThirdwebNftMedia
+                  metadata={nft.metadata}
+                  className={styles.image}
+                />
+                <p>
+                  owned by{" "}
+                  {address && nft.owner === address
+                    ? "you"
+                    : truncateAddress(nft.owner)}
+                </p>
+              </div>
+            ))}
         </div>
-
-        <div className={styles.grid}>
-          <a href="https://portal.thirdweb.com/" className={styles.card}>
-            <h2>Portal &rarr;</h2>
-            <p>
-              Guides, references and resources that will help you build with
-              thirdweb.
-            </p>
-          </a>
-
-          <a href="https://thirdweb.com/dashboard" className={styles.card}>
-            <h2>Dashboard &rarr;</h2>
-            <p>
-              Deploy, configure and manage your smart contracts from the
-              dashboard.
-            </p>
-          </a>
-
-          <a
-            href="https://portal.thirdweb.com/templates"
-            className={styles.card}
-          >
-            <h2>Templates &rarr;</h2>
-            <p>
-              Discover and clone template projects showcasing thirdweb features.
-            </p>
-          </a>
-        </div>
-      </main>
+      )}
     </div>
   );
 };
