@@ -1,3 +1,17 @@
+@import url("https://use.typekit.net/mfp0eer.css");
+
+/*  Cooper Std Black Italic
+font-family: cooper-black-std, serif;
+font-weight: 400;
+font-style: italic;
+
+Cooper Std Black
+font-family: cooper-black-std, serif;
+font-weight: 400;
+font-style: normal;  */
+
+/* ####################################################################################################### */
+
 .container {
   display: flex;
   flex-direction: column;
@@ -31,8 +45,10 @@
 
 .title {
   margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
+  line-height: 1.75;
+  font-size: 24pt;
+  font-family: cooper-black-std;
+  color: #f5f5f5;
 }
 
 .title,
@@ -86,17 +102,21 @@
   justify-content: center;
   border-radius: 10px;
   margin: 10px;
-  box-shadow: 0px 0px 5px #000000;
+  box-shadow: 0px 0px 15px #999999;
   min-width: 250px;
-  background: #9a1a1a;
+  background: #0a0a0a;
+  transition-property: transform;
+  transition-duration: .3s;
 }
 
 .card:hover,
 .card:focus,
 .card:active {
-  background-color: #272c34;
+  background-color: #0a0a0a;
   color: #0ea5e9;
   border-color: #0ea5e9;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .card h2 {
@@ -106,7 +126,7 @@
 
 .card p {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 16pt;
   line-height: 1.5;
 }
 
@@ -117,10 +137,13 @@
 
 .image {
   min-width: 100px;
-  max-width: 150px;
+  max-width: 250px;
   min-height: 100px;
-  max-height: 150px;
+  max-height: 250px;
   position: relative;
+  border-radius: 10px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 @media (max-width: 600px) {

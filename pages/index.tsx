@@ -6,7 +6,8 @@ import {
   useNFTs,
 } from "@thirdweb-dev/react";
 import type { NextPage } from "next";
-import styles from "styles/Home.module.css";
+import styles from "../styles/Home.module.css";
+
 
 const Home: NextPage = () => {
   const address = useAddress();
@@ -47,13 +48,9 @@ const Home: NextPage = () => {
                   metadata={nft.metadata}
                   className={styles.image}
                 />
-                <h1>{nft.metadata.name}</h1>
-                <p>
-                  owned by{" "}
-                  {address && nft.owner === address
-                    ? "you"
-                    : truncateAddress(nft.owner)}
-                </p>
+                <h1 className={styles.title}>
+                  Booty #{nft.metadata.id}
+                </h1>
               </div>
             ))}
         </div>
