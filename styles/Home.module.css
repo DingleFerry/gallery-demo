@@ -1,14 +1,7 @@
 @import url("https://use.typekit.net/mfp0eer.css");
-
 /*  Cooper Std Black Italic
 font-family: cooper-black-std, serif;
-font-weight: 400;
-font-style: italic;
-
-Cooper Std Black
-font-family: cooper-black-std, serif;
-font-weight: 400;
-font-style: normal;  */
+font-style: normal; || font-style: italic;*/
 
 /* ####################################################################################################### */
 
@@ -22,67 +15,13 @@ font-style: normal;  */
   background-color: #f5f5f5;
 }
 
-.main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.title a {
-  color: #f213a4;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
-.title {
+.cardTitle {
   margin: 0;
   line-height: 1.75;
   font-size: 24pt;
   font-family: cooper-black-std;
-  color: #f5f5f5;
-}
-
-.title,
-.description {
+  color: #0a0a0a;
   text-align: center;
-}
-
-.connect {
-  margin-bottom: 2rem;
-  width: 230px;
-}
-
-.description {
-  margin-top: 3rem;
-  margin-bottom: 2rem;
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
-
-.grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 1200px;
 }
 
 .cards {
@@ -92,7 +31,7 @@ font-style: normal;  */
   align-items: center;
   margin-top: 20px;
   gap: 20px;
-  width: 80vw;
+  width: 90vw;
 }
 
 .card {
@@ -104,35 +43,21 @@ font-style: normal;  */
   margin: 10px;
   /* box-shadow: 0px 0px 15px #999999; */
   min-width: 250px;
-  background: #0a0a0a;
   transition-property: transform;
   transition-duration: .3s;
+  box-shadow: 0px 0px 20px 0px rgba(10, 10, 10, .25);
 }
 
 .card:hover,
 .card:focus,
 .card:active {
-  background-color: #0a0a0a;
-  color: #0ea5e9;
-  border-color: #0ea5e9;
   transform: scale(1.1);
   cursor: pointer;
 }
 
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
-  margin: 0;
-  font-size: 16pt;
-  line-height: 1.5;
-}
-
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
+.fullCard{
+  display: flex;
+  flex-direction: column;
 }
 
 .image {
@@ -142,26 +67,95 @@ font-style: normal;  */
   max-height: 250px;
   position: relative;
   border-radius: 10px;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
+}
+
+.mainBtn, .socialBtn{
+  cursor: pointer;
+  background: #B842A0;
+  font-family: cooper-black-std, serif;
+  font-size: 22px;
+  padding: 5px 20px;
+  border-radius: 100px;
+  border: none;
+  margin-top: 20px;
+}
+
+.socialBtn{
+  margin-left: 40px;
+}
+
+.modal{
+  width: 60vw;
+  height: 35vw;
+  background: #0a0a0a;
+  margin-top: 40px;
+  margin-bottom: calc(-30px - 60vh);
+  z-index: 1000;
+  visibility: hidden;
+  display: flex;
+  flex-wrap: nowrap;
+  border-radius: 20px;
+  position: fixed;
+  top: 5vw;
+  opacity: 1;
+  box-shadow: 0px 0px 40px 0px rgba(10, 10, 10, .5);
+}
+
+.modal > div{
+}
+
+.screenCover{
+  width: 100vw;
+  height: 100vh;
+  background: #f5f5f5;
+  opacity: 0.5;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  visibility: hidden;
+}
+
+.closeBtn{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.imgCase{
+  width: 35vw;
+}
+
+.modalImg{
+  width: 35vw;
+  border-radius: 20px;
+}
+
+.socialImg{
+  width: 40px;
+}
+
+.textCase{
+  max-width: 25vw;
+  font-family: cooper-black-std;
+  font-size: 24px;
+  text-align: left;
+}
+
+.textCase ul{
+  list-style-type: none;
+}
+
+.name{
+  font-size: 36px !important;
 }
 
 @media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
 }
 
 @media (prefers-color-scheme: dark) {
-  .card,
-  .footer {
-    border-color: #222;
-  }
-  .code {
-    background: #111;
-  }
-  .logo img {
-    filter: invert(1);
-  }
 }
